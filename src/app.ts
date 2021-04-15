@@ -1,4 +1,17 @@
+//validaton
+
+interface Validatable {
+   value: string | number;
+   required?: boolean;
+   minLength?: number;
+   maxLength?: number;
+   min?: number;
+   max?: number; 
+}
+
+
 // autobind decorator
+
 function autobind(
    _: any,
    _2: string,
@@ -15,6 +28,7 @@ function autobind(
 }
 
 // project
+
 class ProjectInput {
    templateElement: HTMLTemplateElement;
    hostElement: HTMLDivElement;
