@@ -80,17 +80,14 @@ class ProjectInput {
       const enteredPeople = this.peopleInputElement.value;
 
       const titleValidatable: Validatable = {
-         value: +enteredTitle,
+         value: enteredTitle,
          required: true,
-         min: 1,
-         max: 5
       };
 
       const descriptionValidatable: Validatable = {
-         value: +enteredDescription,
+         value: enteredDescription,
          required: true,
-         min: 1,
-         max: 5
+         minLength: 5
       };
 
       const peopleValidatable: Validatable = {
