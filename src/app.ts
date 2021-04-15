@@ -9,6 +9,27 @@ interface Validatable {
    max?: number; 
 }
 
+function Validate(ValidatableInput: Validatable) {
+   let isValid = true;
+   if(ValidatableInput.required) {
+      isValid = isValid && ValidatableInput.value.toString().trim().length !== 0
+   }
+   if (ValidatableInput.minLength != null && typeof ValidatableInput.value === 'string') {
+      isValid = isValid && ValidatableInput.value.length > ValidatableInput.minLength
+   }
+   if (ValidatableInput.maxLength != null && typeof ValidatableInput.value === 'string') {
+      isValid = isValid && ValidatableInput.value.length < ValidatableInput.maxLength
+   }
+   if (ValidatableInput.min != null && ValidatableInput.value === 'number') {
+      isValid = isValid && ValidatableInput.min > ValidatableInput.min
+   }
+   if (ValidatableInput.max != null && ValidatableInput.value === 'number') {
+      isValid = isValid && ValidatableInput.max < ValidatableInput.max
+   }
+
+   return isValid;
+}
+
 
 // autobind decorator
 
