@@ -48,7 +48,19 @@ function autobind(
    return adjDescriptor;
 }
 
-// project
+// project List Class
+
+class ProjectList {
+   templateElement: HTMLTemplateElement;
+   hostElement: HTMLDivElement;
+   element: HTMLElement;
+
+   constructor() {
+      
+   }
+}
+
+// project Input Class
 
 class ProjectInput {
    templateElement: HTMLTemplateElement;
