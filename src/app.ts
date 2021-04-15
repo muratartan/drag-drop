@@ -62,6 +62,11 @@ class ProjectList {
       const importedNode = document.importNode(this.templateElement.content, true);
       this.element = importedNode.firstElementChild as HTMLElement;
       this.element.id = `${this.type}-projects`;
+      this.attach();
+   }
+
+   private attach() {
+      this.hostElement.insertAdjacentElement('beforeend', this.element)
    }
 }
 
