@@ -59,6 +59,10 @@ class ProjectInput {
    private submitHandler(event: Event) {
       event.preventDefault();
       const userInput = this.gatherUserInput();
+      if(Array.isArray(userInput)) {
+         const [title,desc,people] = userInput;
+         console.log(title,desc,people);
+      }
    };
 
    private configure() {
