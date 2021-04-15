@@ -56,7 +56,12 @@ class ProjectList {
    element: HTMLElement;
 
    constructor() {
-      
+      this.templateElement = document.getElementById('project-list')! as HTMLTemplateElement;
+      this.hostElement = document.getElementById('app')! as HTMLDivElement;
+
+      const importedNode = document.importNode(this.templateElement.content, true);
+      this.element = importedNode.firstElementChild as HTMLElement;
+      this.element.id = 'user-input';
    }
 }
 
