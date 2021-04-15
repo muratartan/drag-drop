@@ -6,12 +6,12 @@ interface Validatable {
    minLength?: number;
    maxLength?: number;
    min?: number;
-   max?: number; 
+   max?: number;
 }
 
 function Validate(ValidatableInput: Validatable) {
    let isValid = true;
-   if(ValidatableInput.required) {
+   if (ValidatableInput.required) {
       isValid = isValid && ValidatableInput.value.toString().trim().length !== 0
    }
    if (ValidatableInput.minLength != null && typeof ValidatableInput.value === 'string') {
@@ -100,30 +100,31 @@ class ProjectInput {
          max: 5
       };
 
-      if (enteredTitle.trim().length === 0 ||
-         enteredDescription.trim().length === 0 ||
-         enteredPeople.trim().length === 0
+      if (
+         !Validate(titleValidatable) ||
+         !Validate(descriptionValidatable) ||
+         !Validate(peopleValidatable)
       ) {
          alert('invalid input, please try again!')
          return;
       } else {
-         return [enteredTitle,enteredDescription, +enteredPeople]
+         return [enteredTitle, enteredDescription, +enteredPeople]
       }
    };
 
    private clearInputs() {
       this.titleInputElement.value = '',
-      this.descriptionInputElement.value = '',
-      this.peopleInputElement.value = ''
+         this.descriptionInputElement.value = '',
+         this.peopleInputElement.value = ''
    }
 
    @autobind
    private submitHandler(event: Event) {
       event.preventDefault();
       const userInput = this.gatherUserInput();
-      if(Array.isArray(userInput)) {
-         const [title,desc,people] = userInput;
-         console.log(title,desc,people);
+      if (Array.isArray(userInput)) {
+         const [title, desc, people] = userInput;
+         console.log(title, desc, people);
          this.clearInputs();
       }
    };
