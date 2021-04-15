@@ -15,16 +15,16 @@ function Validate(ValidatableInput: Validatable) {
       isValid = isValid && ValidatableInput.value.toString().trim().length !== 0
    }
    if (ValidatableInput.minLength != null && typeof ValidatableInput.value === 'string') {
-      isValid = isValid && ValidatableInput.value.length > ValidatableInput.minLength
+      isValid = isValid && ValidatableInput.value.length >= ValidatableInput.minLength
    }
    if (ValidatableInput.maxLength != null && typeof ValidatableInput.value === 'string') {
-      isValid = isValid && ValidatableInput.value.length < ValidatableInput.maxLength
+      isValid = isValid && ValidatableInput.value.length <= ValidatableInput.maxLength
    }
    if (ValidatableInput.min != null && ValidatableInput.value === 'number') {
-      isValid = isValid && ValidatableInput.min > ValidatableInput.min
+      isValid = isValid && ValidatableInput.min >= ValidatableInput.min
    }
    if (ValidatableInput.max != null && ValidatableInput.value === 'number') {
-      isValid = isValid && ValidatableInput.max < ValidatableInput.max
+      isValid = isValid && ValidatableInput.max <= ValidatableInput.max
    }
 
    return isValid;
@@ -78,6 +78,27 @@ class ProjectInput {
       const enteredTitle = this.titleInputElement.value;
       const enteredDescription = this.descriptionInputElement.value;
       const enteredPeople = this.peopleInputElement.value;
+
+      const titleValidatable: Validatable = {
+         value: +enteredTitle,
+         required: true,
+         min: 1,
+         max: 5
+      };
+
+      const descriptionValidatable: Validatable = {
+         value: +enteredDescription,
+         required: true,
+         min: 1,
+         max: 5
+      };
+
+      const peopleValidatable: Validatable = {
+         value: +enteredPeople,
+         required: true,
+         min: 1,
+         max: 5
+      };
 
       if (enteredTitle.trim().length === 0 ||
          enteredDescription.trim().length === 0 ||
