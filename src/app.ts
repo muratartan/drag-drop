@@ -65,6 +65,10 @@ class ProjectList {
       this.attach();
    }
 
+   private renderContent() {
+      const listId = `${this.type}-projects-list`;
+   }
+
    private attach() {
       this.hostElement.insertAdjacentElement('beforeend', this.element)
    }
