@@ -107,6 +107,14 @@ function autobind(
    return adjDescriptor;
 }
 
+// Component Base Class
+
+class Component<T extends HTMLElement,U extends HTMLElement> {
+   templateElement: HTMLTemplateElement;
+   hostElement: T;
+   element: U;
+}
+
 // project List Class
 
 class ProjectList {
