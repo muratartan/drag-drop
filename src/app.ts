@@ -67,6 +67,7 @@ class ProjectList {
 
    private renderContent() {
       const listId = `${this.type}-projects-list`;
+      this.element.querySelector('ul').id = listId;
    }
 
    private attach() {
