@@ -1,8 +1,25 @@
+// project type
+
+enum ProjectStatus { Active, Finished };
+
+class Project {
+   constructor(
+      public id: string,
+      public title: string,
+      public description: string,
+      public people: number,
+      public status: ProjectStatus
+   ) {
+
+
+   }
+}
+
 // project state
 
 class ProjectState {
    private listeners: any[] = [];
-   private projects: any[] = [];
+   private projects: Project[] = [];
    private static instance: ProjectState;
 
    private constructor() {
@@ -10,7 +27,7 @@ class ProjectState {
    }
 
    static getInstance() {
-      if(this.instance) {
+      if (this.instance) {
          return this.instance
       }
       this.instance = new ProjectState();
@@ -22,12 +39,13 @@ class ProjectState {
    }
 
    addProject(title: string, description: string, numOfPeople: number) {
-      const newProject = {
-         id: Math.random().toString,
-         title: title,
-         description: description,
-         people: numOfPeople
-      };
+      const newProject = new Project(
+         Math.random().toString(),
+         title,
+         description,
+         numOfPeople,
+         ProjectStatus.Active
+      );
       this.projects.push(newProject);
       for (const listenerFn of this.listeners) {
          listenerFn(this.projects.slice());
@@ -93,7 +111,7 @@ class ProjectList {
    templateElement: HTMLTemplateElement;
    hostElement: HTMLDivElement;
    element: HTMLElement;
-   assignedProjects: any[];
+   assignedProjects: Project[];
 
    constructor(private type: 'active' | 'finished') {
       this.templateElement = document.getElementById('project-list')! as HTMLTemplateElement;
@@ -206,7 +224,7 @@ class ProjectInput {
       const userInput = this.gatherUserInput();
       if (Array.isArray(userInput)) {
          const [title, desc, people] = userInput;
-         projectState.addProject(title,desc,people);
+         projectState.addProject(title, desc, people);
          this.clearInputs();
       }
    };
