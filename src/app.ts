@@ -145,6 +145,14 @@ abstract class Component<T extends HTMLElement, U extends HTMLElement> {
 
 }
 
+// project item class
+
+class ProjectItem extends Component<HTMLUListElement,HTMLLIElement> {
+   constructor(hostId: string, id:string) {
+      super('single-project', hostId, false, id);
+   }
+}
+
 // project List Class
 
 class ProjectList extends Component<HTMLDivElement,HTMLElement>{
