@@ -119,3 +119,11 @@ button:active {
   border: 1px solid #ff0062;
   background: #f7f7f7;
 }
+
+.droppable {
+  background-color: white;
+}
+
+#finished-projects .droppable {
+  background: #d6e1ff;
+}
