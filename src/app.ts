@@ -180,7 +180,10 @@ class ProjectItem extends Component<HTMLUListElement,HTMLLIElement> implements D
    }
 
    @autobind
-   dragStartHandler(event: DragEvent) {};
+   dragStartHandler(event: DragEvent) {
+      event.dataTransfer!.setData('text/plain',this.project.id);
+      event.dataTransfer!.effectAllowed = 'move';
+   };
    @autobind
    dragEndHandler(event: DragEvent) {};
 
