@@ -179,10 +179,16 @@ class ProjectItem extends Component<HTMLUListElement,HTMLLIElement> implements D
       this.renderContent();
    }
 
+   @autobind
    dragStartHandler(event: DragEvent) {};
+   @autobind
    dragEndHandler(event: DragEvent) {};
 
-   configure() {};
+   configure() {
+      this.element.addEventListener('dragstart', this.dragStartHandler);
+      this.element.addEventListener('dragend', this.dragEndHandler);
+   };
+
    renderContent() {
       this.element.querySelector('h2')!.textContent = this.project.title;
       this.element.querySelector('h3')!.textContent = this.persons + ' assigned';
